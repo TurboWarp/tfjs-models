@@ -48,6 +48,7 @@ export interface MediaPipeFaceDetectorMediaPipeModelConfig extends
     MediaPipeFaceDetectorModelConfig {
   runtime: 'mediapipe';
   solutionPath?: string;
+  locateFile?: (path: string, prefix?: string) => string;
 }
 
 /**

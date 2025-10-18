@@ -44,13 +44,13 @@ export class MediaPipeFaceDetectorMediaPipe implements FaceDetector {
   // Should not be called outside.
   constructor(config: MediaPipeFaceDetectorMediaPipeModelConfig) {
     this.faceDetectorSolution = new faceDetection.FaceDetection({
-      locateFile: (path, base) => {
+      locateFile: config.locateFile ?? ((path, base) => {
         if (config.solutionPath) {
           const solutionPath = config.solutionPath.replace(/\/+$/, '');
           return `${solutionPath}/${path}`;
         }
         return `${base}/${path}`;
-      }
+      })
     });
     this.faceDetectorSolution.setOptions(
         {selfieMode: this.selfieMode, model: config.modelType});
